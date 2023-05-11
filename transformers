@@ -1,0 +1,19 @@
+pip install transformers
+from transformers import pipeline, set_seed
+
+# Set seed for reproducibility
+set_seed(42)
+
+# Load pre-trained model
+model = pipeline("text-generation", model="EleutherAI/gpt-neo-2.7B")
+
+# Define conversation loop
+while True:
+    # Get user input
+    user_input = input("User: ")
+
+    # Generate response
+    response = model(user_input, max_length=50)[0]["generated_text"]
+
+    # Print response
+    print("ChatGPT: " + response)
